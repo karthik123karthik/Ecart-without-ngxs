@@ -74,22 +74,34 @@
             "browserTarget": "dummy-app:build"
           }
         },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+        "storybook": {
+          "builder": "@storybook/angular:start-storybook",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
+            "configDir": ".storybook",
+            "browserTarget": "dummy-app:build",
+            "compodoc": true,
+            "compodocArgs": [
+              "-e",
+              "json",
+              "-d",
+              "."
             ],
-            "tsConfig": "tsconfig.spec.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
+            "port": 6006
+          }
+        },
+        "build-storybook": {
+          "builder": "@storybook/angular:build-storybook",
+          "options": {
+            "configDir": ".storybook",
+            "browserTarget": "dummy-app:build",
+            "compodoc": true,
+            "compodocArgs": [
+              "-e",
+              "json",
+              "-d",
+              "."
             ],
-            "styles": [
-              "src/styles.css"
-            ],
-            "scripts": []
+            "outputDir": "storybook-static"
           }
         }
       }

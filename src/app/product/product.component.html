@@ -1,0 +1,15 @@
+<div   class="product-container">
+    <span class="title">{{product.name}}</span>
+    <img class="product-img" src={{product.imageUrl}} alt="PRODUCT-IMG"/>
+    <span *appPremium="!isPremium" class="price">Price: {{product.price}}$</span>
+    <div *appPremium="isPremium" class="discount-price">
+    <span class="price cancel">Price: {{product.price}}$</span>
+    <span class="price">New Price: {{(product.discountedprice).toFixed(2)}}$</span>
+  </div>
+    <div  class="product-quantity" *ngIf="product.quantity>0">
+        <button class="btn" (click)="increaseQuantity()">+</button>
+        <span>quantity: {{product.quantity}}</span>
+        <button class="btn" (click)="decreaseQuantity()">-</button>
+    </div>
+    <button class="cart-btn" *ngIf="product.quantity === 0" (click)="increaseQuantity()">Add To Cart</button>
+</div>

@@ -1,0 +1,27 @@
+<h1 style="text-align: center; padding:10px;font-family: 'Roboto', sans-serif;">Cart</h1>
+<div>
+<h2 *ngIf="products.length === 0" style="color:grey;">No Products In The Cart</h2>
+<table *ngIf="products.length > 0">
+   <thead>
+       <tr>
+        <th>Product</th>
+        <th>quantity</th>
+        <th>Price</th>
+       </tr>
+   </thead>
+   <tbody>
+        <tr *ngFor = "let product of products" >
+            <td>{{product.name}}</td>
+            <td>{{product.quantity}}</td>
+            <td>{{isPremium===false?(product.price * product.quantity).toFixed(2):(product.discountedprice * product.quantity).toFixed(2)}}$</td>
+        </tr>
+   </tbody>
+   <tfoot>
+       <tr>
+        <th>Total</th>.
+        <th>{{getTotal()}}$</th>
+       </tr>
+   </tfoot>
+</table>
+</div>
+
