@@ -6,6 +6,7 @@ import { Directive, Input, ViewContainerRef, TemplateRef} from "@angular/core";
 export class CustomDirective{
 
     @Input()set appPremium(condition:boolean){
+
         if(condition){
             //show that discounted span 
             this.viewContainer.createEmbeddedView(this.ref)

@@ -1,9 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import { Store, Select } from '@ngxs/store';
-import { AddProducts } from './store/cart.action';
-import {CartState} from './store/cart.state'
 import { data } from './data';
-import { Observable } from 'rxjs';
 import { Product } from './Models';
 
 
@@ -16,18 +12,21 @@ import { Product } from './Models';
 
 export class AppComponent implements OnInit {
   
-  @Select(CartState.getProducts)products$!:Observable<Product[]>;
-  @Select(CartState.getFilteredProducts)filteredProduct$!:Observable<Product[]>;
+  products!:Product[]
 
   isPremium = false
 
-  constructor(private store:Store){ }
+  constructor(){ }
 
   ngOnInit(): void {
-      this.store.dispatch(new AddProducts(data))
+      this.products = data;
   }
 
   togglePremium(){
     this.isPremium = !this.isPremium
+  }
+
+  filteredProducts(){
+    return this.products.filter((pro) => pro.quantity > 0);
   }
 }

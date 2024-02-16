@@ -5,18 +5,14 @@
 </div>
 <div class="main-container">
   <div class="products-container">
-    <ng-container *ngIf="products$ | async as products">
       <app-product
         [isPremium]="isPremium"
         *ngFor="let product of products"
         [product]="product"
       ></app-product>
-    </ng-container>
   </div>
 
   <div class="cart-container">
-    <ng-container *ngIf="filteredProduct$ | async as filteredProduct">
-      <app-cart [isPremium]="isPremium" [products]="filteredProduct"></app-cart>
-    </ng-container>
+    <app-cart [isPremium]="isPremium" [products]="filteredProducts()"></app-cart>
   </div>
 </div>
